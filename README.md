@@ -43,7 +43,7 @@
 
 8. [Interfaces](dia_02#interfaces)
 
-## [DIA 03](dia_03#dia-03)
+## [DIA 03](dia_03)
 
 9. [Concorrência](dia_03#concorrência)
 
