@@ -58,7 +58,7 @@
 
 12. [Projeto](dia_03#projeto)
 
-    1. [API](dia_3#api)
-    2. [API Rest](dia_3#api-rest)
-    3. [API em Go com net/HTTP](dia_3#api-em-go-com-nethttp)
-    4. [Referências](dia_3##referências)
+    1. [API](dia_03#api)
+    2. [API Rest](dia_03#api-rest)
+    3. [API em Go com net/HTTP](dia_03#api-em-go-com-nethttp)
+    4. [Referências](dia_03#refer%C3%AAncias-1)
