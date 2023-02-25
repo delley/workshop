@@ -678,7 +678,7 @@ func main() {
 }
 ```
 
-### Referências
+## Referências
 
 - [A Tour of Go - Português](https://go-tour-br.appspot.com)
 - [A Tour of Go - English](https://tour.golang.org)

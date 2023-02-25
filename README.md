@@ -1,10 +1,10 @@
 # Workshop Go: do Zero à API
 
-## [DIA 01](../../tree/main/dia_01)
+## [DIA 01](../../tree/main/dia_01#dia-01)
 
 1. [O que é Go](../../tree/main/dia_01#o-que-é-go)
 
-    1. [Um pouco de história](d../../tree/main/ia_01#um-pouco-de-história)
+    1. [Um pouco de história](../../tree/main/dia_01#um-pouco-de-história)
     2. [Semântica](../../tree/main/dia_01#semântica)
     3. [Por quê Go?](../../tree/main/dia_01#por-quê-go)
     4. [Hello World](../../tree/main/dia_01#hello-world)
@@ -61,4 +61,5 @@
     1. [API](../../tree/main/dia_03#api)
     2. [API Rest](../../tree/main/dia_03#api-rest)
     3. [API em Go com net/HTTP](../../tree/main/dia_03#api-em-go-com-nethttp)
-    4. [Referências](../../tree/main/dia_03#refer%C3%AAncias-1)
+    
+13. [Referências](../../tree/main/dia_03#referências-1)
