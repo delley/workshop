@@ -196,7 +196,7 @@ A ideia é utilizar a concorrência do Go para realizar diversas requisições s
 Se você já está na área de TI (tecnologia da informação) há algum tempo, provavelmente já deve ter ouvido o termo API pelo menos uma vez. Mas, o que é essa API?
 
 > _"API (do Inglês **Application Programming Interface**) é um conjunto de rotinas e padrões estabelecidos por um software para a utilização das suas funcionalidades por aplicativos que não pretendem envolver-se em detalhes da implementação do software, mas apenas usar seus serviços"_
->> <cite>[pt.wikipedia.org][1]</cite>
+>> <cite>[pt.wikipedia.org][2]</cite>
 
 ### API Rest
 
@@ -686,4 +686,4 @@ func main() {
 - [Learn Go with Tests - English](https://quii.gitbook.io/learn-go-with-tests/)
 - [Go by Example](https://gobyexample.com/)
 
-[1]:https://pt.wikipedia.org/wiki/Interface_de_programa%C3%A7%C3%A3o_de_aplica%C3%A7%C3%B5es
+[2]:https://pt.wikipedia.org/wiki/Interface_de_programa%C3%A7%C3%A3o_de_aplica%C3%A7%C3%B5es
