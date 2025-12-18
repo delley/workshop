@@ -9,8 +9,9 @@ PDF_BUILDER_FLAGS = \
 	-v `pwd`:/pandoc \
 	dalibo/pandocker \
 	--pdf-engine=xelatex \
-	--template=eisvogel.tex \
+	--template=eisvogel \
 	--filter pandoc-include \
+	--filter pandoc-latex-environment \
 	--listings \
 	--top-level-division=chapter
 

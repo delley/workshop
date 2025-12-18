@@ -1,7 +1,7 @@
 ---
 title: "Workshop Go: do Zero à API"
 author: [Diego Santos, Francisco Oliveira]
-date: "27-02-2023"
+date: "18-12-2025"
 subject: "Workshop Go"
 keywords: [Programação, Go, Golang, API]
 lang: "pt-br"
@@ -17,6 +17,17 @@ titlepage-rule-height: 2
 titlepage-logo: "gopher.pdf"
 logo-width: 40mm
 table-use-row-colors: true
+header-includes:
+- |
+  ```{=latex}
+  \usepackage{awesomebox}
+  ```
+pandoc-latex-environment:
+  noteblock: [note]
+  tipblock: [tip]
+  warningblock: [warning]
+  cautionblock: [caution]
+  importantblock: [important]
 ...
 
 !include dia_01.md
