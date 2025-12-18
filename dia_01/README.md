@@ -50,7 +50,7 @@ Go é nativamente multiplataforma. O mesmo código-fonte pode ser compilado para
 
 #### Design orientado à nuvem
 
-Go foi pensada desde o início para cenários de nuvem e microsserviços. As aplicações são distribuídas como um único binário estático, que inclui todas as dependências necessárias, simplificando o deploy, reduzindo problemas de compatibilidade e tornando o runtime mais previsível.
+Go foi pensada desde o início para cenários de nuvem e microsserviços. As aplicações são distribuídas como um único binário estático, que inclui todas as dependências necessárias, simplificando o _deploy_ (implantação), reduzindo problemas de compatibilidade e tornando o runtime mais previsível.
 
 #### Segurança
 
@@ -67,7 +67,7 @@ A biblioteca padrão do Go é ampla e madura. Ela oferece suporte nativo para se
 
 ### Hello World
 
-Assim como em outras linguagens... em Go temos também o clássico **Hello World**.
+Assim como em outras linguagens... em Go temos também o clássico **Hello World**:
 
 ```go
 // dia_01/exemplos/01-intro/ex1.go
@@ -90,7 +90,7 @@ go run hello.go
 
 Mas... como podemos testar nosso código?
 
-Primeiramente, vamos separar o "domínio" (regras de negócio) do restante do código (efeitos colaterais). A função `fmt.Println` é um efeito colateral (que está imprimindo um valor no `stdout` - saída padrão) e a `string` que estamos passando para ela é o nosso domínio.
+Inicialmente, vamos isolar o **domínio** — isto é, as regras de negócio — do restante do código que envolve **efeitos colaterais**. A função `fmt.Println` representa um efeito colateral, pois escreve um valor no `stdout` (saída padrão), enquanto a `string` fornecida a ela corresponde ao conteúdo do nosso domínio.
 
 ```go
 // dia_01/exemplos/01-intro/ex2.go
@@ -107,9 +107,9 @@ func main() {
 }
 ```
 
-Criamos uma nova função: `Hello`, mas dessa vez adicionamos a palavra `string` na sua definição. Isso significa que essa função retornará uma `string`.
+Criamos uma nova função: `Hello()`, mas dessa vez adicionamos a palavra `string` na sua definição. Isso significa que essa função retornará uma `string`.
 
-Para validar o comportamento da função `Hello`, criaremos um arquivo denominado `hello_test.go`, no qual será inserido o código a seguir:
+Para validar o comportamento da função `Hello()`, criaremos um arquivo denominado `hello_test.go`, no qual será inserido o código a seguir:
 
 ```go
 // dia_01/exemplos/01-intro/hello_test.go
