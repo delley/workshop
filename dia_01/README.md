@@ -86,7 +86,7 @@ Para executar este código, você pode começar com o comando:
 go run hello.go
 ```
 
-### Separando Domínio de Efeitos Colaterais
+### Separando domínio de efeitos colaterais
 
 Mas... como podemos testar nosso código?
 
