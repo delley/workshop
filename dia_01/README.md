@@ -2,9 +2,9 @@
 
 ## O que é Go
 
-> _"Go é uma linguagem de programação de código aberto que facilita a criação de software **simples**, **confiável** e **eficiente**"_ 
+> _"Go é uma linguagem de programação de código aberto, desenvolvida pelo Google, projetada para ser **simples**, **eficiente** e **confiável**, com **forte suporte à concorrência** e **excelente desempenho em aplicações modernas e escaláveis**."_ 
 >
-> **[golang.org][1]**
+> **[go.dev][1]**
 
 ### Um pouco de história
 
@@ -859,4 +859,4 @@ fmt.Println(naves)
 ```
 
 
-[1]:https://golang.org/
+[1]:https://go.dev/
