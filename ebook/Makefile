@@ -6,6 +6,7 @@ PDF_BUILDER_FLAGS = \
 	run \
 	--rm \
 	-u `id -u`:`id -g` \
+	-e PYTHONWARNINGS=ignore::SyntaxWarning \
 	-v `pwd`:/pandoc \
 	dalibo/pandocker \
 	--pdf-engine=xelatex \
