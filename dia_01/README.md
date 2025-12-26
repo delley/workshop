@@ -350,13 +350,15 @@ func main() {
 ...
 ```
 
-##### Restrições na declaração curta de variáveis
+::: important
+**Restrições na declaração curta de variáveis**
 
 Existem algumas restrições quando usamos a declaração curta de variáveis e é muito importante estar ciente para evitar confusão:
 
 - Em primeiro lugar, ela só pode ser usada dentro de um bloco de funções;
 - o operador `:=` declara a variável e atribui os valores;
 - `:=` não pode ser usado para atualizar uma variável declarada anteriormente;
+:::
 
 #### Declaração de variável em bloco
 
