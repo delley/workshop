@@ -6,7 +6,7 @@
 
     1. [Um pouco de história](../../tree/main/dia_01#um-pouco-de-história)
     2. [Semântica](../../tree/main/dia_01#semântica)
-    3. [Por quê Go?](../../tree/main/dia_01#por-quê-go)
+    3. [Por que escolher Go?](../../tree/main/dia_01#por-que-escolher-go)
     4. [Hello World](../../tree/main/dia_01#hello-world)
 
 2. [Tipos básicos](../../tree/main/dia_01#tipos-básicos)
