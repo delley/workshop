@@ -111,8 +111,9 @@ Nos últimos anos houve muita turbulência em torno do gerenciamento de dependê
 
 ### O que é o Go Modules?
 
-> É o novo sistema de gerenciamento de dependências do Go que torna explícita e fácil o gerenciamento das informações sobre versões de dependências
->> <cite>[The Go Blog - Using Go Modules][1]</cite>
+> _"É o novo sistema de gerenciamento de dependências do Go que torna explícita e fácil o gerenciamento das informações sobre versões de dependências."_
+>
+> **[The Go Blog - Using Go Modules][1]**
 
 Em poucas palavras, *Go Modules* é a resposta oficial para lidarmos com o **Gerenciamento de Dependências em Go**.
 
@@ -122,7 +123,17 @@ O lançamento da versão 1.13 possibilitou a criação do diretório do projeto 
 
 Esta é uma grande mudança em relação as versões anteriores do Go (pré-1.11), onde a prática recomendada era criar o diretório dos projetos dentro de uma pasta `src` sob o diretório `GOPATH`, conforme mostrado a seguir:
 
-![Estrutura $GOPATH](img/gopath_structure.png)
+```{=latex}
+\begin{verbatim}
+$GOPATH 
+├── bin 
+├── pkg 
+└── src 
+    └── github.com 
+        └── <usuário github> 
+            └── <projeto>
+\end{verbatim}
+```
 
 Nessa estrutura, os diretórios possuem as seguintes funções:
 
@@ -140,11 +151,13 @@ De forma resumida:
 
 Para utilizar módulos no seu projeto, abra seu terminal e crie um novo diretório para o projeto chamado `buscacep` em qualquer lugar em seu computador.
 
-> **Dica**: Crie o diretório do projeto em `$HOME/workshop`, mas você pode escolher um local diferente, se desejar.
+::: tip
+**Dica**: Crie o diretório do projeto em `$HOME/workshop`, mas você pode escolher um local diferente, se desejar:
 
 ```bash
 $ mkdir -p $HOME/workshop/buscacep
 ```
+:::
 
 A próxima coisa que precisamos fazer é informar ao Go que queremos usar a nova funcionalidade de módulos para ajudar a gerenciar e controlar a versão de quaisquer pacotes de terceiros que o nosso projeto importe.
 
@@ -196,7 +209,8 @@ A ideia é utilizar a concorrência do Go para realizar diversas requisições s
 Se você já está na área de TI (tecnologia da informação) há algum tempo, provavelmente já deve ter ouvido o termo API pelo menos uma vez. Mas, o que é essa API?
 
 > _"API (do Inglês **Application Programming Interface**) é um conjunto de rotinas e padrões estabelecidos por um software para a utilização das suas funcionalidades por aplicativos que não pretendem envolver-se em detalhes da implementação do software, mas apenas usar seus serviços"_
->> <cite>[pt.wikipedia.org][2]</cite>
+>
+> **[pt.wikipedia.org][2]**
 
 ### API Rest
 
