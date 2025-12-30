@@ -592,15 +592,6 @@ go 1.13
 
 Basicamente é isso! Nosso projeto já está configurado e com o Go Modules habilitado.
 
-### Referências
-
-[1]:https://blog.golang.org/using-go-modules
-- [Using Go Modules](https://blog.golang.org/using-go-modules)
-- [Migrating to Go Modules](https://blog.golang.org/migrating-to-go-modules)
-- [Publishing Go Modules](https://blog.golang.org/publishing-go-modules)
-- [Go Modules: v2 and Beyond](https://blog.golang.org/v2-go-modules)
-
-
 ## Projeto
 
 Como projeto final, vamos desenvolver uma API que vai funcionar como um proxy para alguns serviços de CEP.
@@ -1097,10 +1088,15 @@ func main() {
 
 ## Referências
 
+[1]:https://blog.golang.org/using-go-modules
 - [A Tour of Go - Português](https://go-tour-br.appspot.com)
 - [A Tour of Go - English](https://tour.golang.org)
 - [Aprenda Go com Testes - Português](https://larien.gitbook.io/aprenda-go-com-testes/)
 - [Learn Go with Tests - English](https://quii.gitbook.io/learn-go-with-tests/)
 - [Go by Example](https://gobyexample.com/)
+- [Using Go Modules](https://blog.golang.org/using-go-modules)
+- [Migrating to Go Modules](https://blog.golang.org/migrating-to-go-modules)
+- [Publishing Go Modules](https://blog.golang.org/publishing-go-modules)
+- [Go Modules: v2 and Beyond](https://blog.golang.org/v2-go-modules)
 
 [2]:https://pt.wikipedia.org/wiki/Interface_de_programa%C3%A7%C3%A3o_de_aplica%C3%A7%C3%B5es

@@ -82,7 +82,6 @@
     1. [O que é o Go Modules?](../../tree/main/dia_03#o-que-é-o-go-modules)
     2. [GOPATH, um pouco de história](../../tree/main/dia_03#gopath-um-pouco-de-história)
     3. [Configuração do projeto e ativação do Go Modules](../../tree/main/dia_03#configuração-do-projeto-e-ativação-do-go-modules)
-    4. [Referências](../../tree/main/dia_03#referências)
 14. [Projeto](../../tree/main/dia_03#projeto)
 
     1. [API](../../tree/main/dia_03#api)
