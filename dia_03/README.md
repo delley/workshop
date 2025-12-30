@@ -497,15 +497,11 @@ go func() {
 wg.Wait()
 ```
 
-### Considerações finais
+### Considerações finais sobre concorrência
 
 Canais são centrais no modelo de concorrência de Go, mas não substituem todas as formas de sincronização. O pacote `sync` existe para resolver problemas específicos de forma direta, eficiente e segura.
 
 Um código Go idiomático não evita `Mutex` nem força canais — ele escolhe conscientemente a ferramenta que melhor expressa a intenção do problema.
-
-### Defer
-
-TODO
 
 ## Pacotes
 
