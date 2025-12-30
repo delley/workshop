@@ -457,23 +457,21 @@ Esse padrão é amplamente utilizado para inicializar conexões, caches, singlet
 
 ### Canais versus primitivas do pacote `sync`
 
-A escolha entre canais e `sync` não é técnica apenas — é 
-
-**semântica**.
+A escolha entre canais e `sync` não é técnica apenas — é **semântica**.
 
 **Use canais quando:**
 
-*   Há troca de dados entre goroutines
-*   O fluxo de dados define a arquitetura
-*   O bloqueio faz parte do modelo lógico
-*   Você quer expressar pipelines ou fan-in / fan-out
+* Há troca de dados entre goroutines
+* O fluxo de dados define a arquitetura
+* O bloqueio faz parte do modelo lógico
+* Você quer expressar pipelines ou fan-in / fan-out
 
 **Use `sync` quando:**
 
-*   Há estado compartilhado em memória
-*   O objetivo é proteger dados, não transferi-los
-*   Você precisa apenas coordenar execução
-*   O código fica mais simples sem canais artificiais
+* Há estado compartilhado em memória
+* O objetivo é proteger dados, não transferi-los
+* Você precisa apenas coordenar execução
+* O código fica mais simples sem canais artificiais
 
 Exemplo comparativo:
 
