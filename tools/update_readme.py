@@ -23,18 +23,23 @@ OUT = ROOT / "README.md"
 
 def gh_slug(text: str) -> str:
     """
-    Aproxima o algoritmo de geração de âncoras do GitHub:
+    Gera âncora compatível com o GitHub:
     - lowercase
-    - remove acentos
+    - mantém acentos
     - remove pontuação
     - espaços viram hífens
     """
     text = text.strip().lower()
-    text = unicodedata.normalize("NFKD", text)
-    text = "".join(c for c in text if not unicodedata.combining(c))
-    text = re.sub(r"[^\w\s-]", "", text, flags=re.UNICODE)
+
+    # remove pontuação, mas mantém letras acentuadas
+    text = re.sub(r"[^\w\s\-áéíóúàèìòùâêîôûãõç]", "", text, flags=re.UNICODE)
+
+    # espaços -> hífen
     text = re.sub(r"\s+", "-", text)
+
+    # colapsa múltiplos hífens
     text = re.sub(r"-{2,}", "-", text).strip("-")
+
     return text
 
 
