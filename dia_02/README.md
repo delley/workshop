@@ -423,9 +423,9 @@ As chamadas deferidas são associadas à **ativação da função na pilha de ch
 
 Isso implica que:
 
-* `defer` **não está ligado a blocos**, mas à função inteira;  
-* não existe “defer de escopo local” em Go;  
-* o momento exato da execução ocorre após a avaliação do `return`, mas antes do controle voltar ao chamador.  
+* `defer` **não está ligado a blocos**, mas à função inteira;
+* não existe “defer de escopo local” em Go;
+* o momento exato da execução ocorre após a avaliação do `return`, mas antes do controle voltar ao chamador.
 
 ```go
 func soma(a, b int) int {
@@ -453,9 +453,9 @@ Saída:
 
 Esse comportamento é intencional e extremamente útil para padrões como:
 
-* aquisição e liberação de múltiplos recursos,  
+* aquisição e liberação de múltiplos recursos,
 * locks encadeados,
-* composição segura de operações.  
+* composição segura de operações.
 
 ### `defer` como ferramenta de gerenciamento de recursos
 
@@ -470,15 +470,17 @@ defer file.Close()
 ```
 
 Esse padrão garante que:
-* o recurso será liberado exatamente uma vez;  
-* o código permanece correto mesmo com retornos antecipados;    
+
+* o recurso será liberado exatamente uma vez;
+* o código permanece correto mesmo com retornos antecipados;
 * a intenção do desenvolvedor fica explícita.
 
 O mesmo princípio se aplica a:
-*   `defer rows.Close()`    
-*   `defer conn.Close()`
-*   `defer mu.Unlock()`
-*   `defer cancel()`
+
+* `defer rows.Close()`
+* `defer conn.Close()`
+* `defer mu.Unlock()`
+* `defer cancel()`
 
 ### Interação entre `defer` e valores de retorno
 
@@ -574,8 +576,8 @@ A regra prática é clara:
 Embora poderoso, o `defer` não deve ser usado para ocultar lógica complexa ou efeitos colaterais não óbvios.
 Evite:
 
-* modificar estado global de forma implícita;  
-* alterar valores de retorno sem clareza; 
+* modificar estado global de forma implícita;
+* alterar valores de retorno sem clareza;
 * criar dependências implícitas difíceis de rastrear.
     
 O uso idiomático do `defer` é **simples, previsível e local**.

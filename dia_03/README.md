@@ -61,8 +61,8 @@ ch := make(chan int)
 
 Canais podem ser:
 
-* **não bufferizados**, quando não possuem capacidade interna;  
-* **bufferizados**, quando possuem uma capacidade definida.  
+* **não bufferizados**, quando não possuem capacidade interna;
+* **bufferizados**, quando possuem uma capacidade definida.
 
 #### Canais não bufferizados
 
@@ -97,7 +97,7 @@ ch := make(chan int, 2)
 
 Em canais bufferizados:
 
-* o envio bloqueia apenas quando o buffer está cheio;  
+* o envio bloqueia apenas quando o buffer está cheio;
 * a recepção bloqueia apenas quando o buffer está vazio.
 
 ```go
@@ -177,7 +177,7 @@ Fechar um canal **não libera memória imediatamente**, nem encerra goroutines a
 
 Algumas propriedades importantes do fechamento de canais:
 
-* apenas o **remetente** deve fechar o canal;  
+* apenas o **remetente** deve fechar o canal;
 * enviar valores para um canal fechado causa _panic_;
 * receber de um canal fechado é permitido;
 * após o fechamento, o canal continua entregando valores restantes no buffer, se houver.
@@ -188,7 +188,7 @@ Quando um canal fechado é lido e não há mais valores disponíveis, a operaç�
 v, ok := <-ch
 ```
 
-* `ok == true`: valor recebido com sucesso;  
+* `ok == true`: valor recebido com sucesso;
 * `ok == false`: canal fechado e sem mais valores.
 
 **Exemplo: consumo até o fechamento do canal**
@@ -221,7 +221,7 @@ O fechamento de canais é amplamente utilizado em cenários de **produtor–cons
 
 Por padrão, um canal criado com `make(chan T)` é **bidirecional**, permitindo tanto envio quanto recepção de valores. No entanto, Go permite restringir a direção de uso de um canal por meio de tipos direcionais.
 
-* `chan<- T`: canal apenas para envio;  
+* `chan<- T`: canal apenas para envio;
 * `<-chan T`: canal apenas para recepção.
 
 A direcionalidade é uma restrição **em nível de tipo**, aplicada principalmente em parâmetros de funções, com o objetivo de aumentar a segurança e a clareza do código.
@@ -255,7 +255,7 @@ func main() {
 
 Nesse exemplo:
 
-* `producer` só pode enviar valores para o canal;   
+* `producer` só pode enviar valores para o canal;
 * `consumer` só pode receber valores do canal;
 * o compilador impede usos indevidos, como tentar receber em um canal de envio.
 
@@ -328,7 +328,7 @@ select {
 
 Esse padrão é útil para:
 
-* operações não bloqueantes;    
+* operações não bloqueantes;
 * _polling_ controlado;
 * implementação de _timeouts_.
 
@@ -352,7 +352,7 @@ Se nenhum valor for recebido em `ch` dentro do intervalo especificado, o caso de
 
 O fechamento de canais, a direcionalidade e o uso de `select` ampliam significativamente o poder expressivo do modelo de concorrência em Go. Esses recursos permitem construir:
 
-* pipelines concorrentes;    
+* pipelines concorrentes;
 * coordenação complexa entre múltiplas goroutines;
 * sistemas reativos e resilientes a falhas temporais.
 
@@ -462,13 +462,15 @@ A escolha entre canais e `sync` não é técnica apenas — é
 **semântica**.
 
 **Use canais quando:**
-*   Há troca de dados entre goroutines    
+
+*   Há troca de dados entre goroutines
 *   O fluxo de dados define a arquitetura
 *   O bloqueio faz parte do modelo lógico
 *   Você quer expressar pipelines ou fan-in / fan-out
 
 **Use `sync` quando:**
-*   Há estado compartilhado em memória    
+
+*   Há estado compartilhado em memória
 *   O objetivo é proteger dados, não transferi-los
 *   Você precisa apenas coordenar execução
 *   O código fica mais simples sem canais artificiais
