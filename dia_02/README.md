@@ -702,7 +702,7 @@ Propagar um erro geralmente significa retorná-lo ao chamador, preservando o flu
 - Sempre que possível, adicione contexto ao erro antes de propagá-lo.
 - Trate erros no nível mais apropriado da aplicação.
 
-Considerações finais sobre erros
+### Considerações finais sobre erros
 
 Em Go, erros são parte do contrato das funções e devem ser tratados com a mesma atenção que qualquer outro valor retornado. Essa abordagem explícita favorece código mais legível, previsível e fácil de manter, além de incentivar decisões conscientes sobre falhas e comportamentos excepcionais ao longo do fluxo da aplicação.
 

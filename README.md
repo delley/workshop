@@ -65,6 +65,7 @@
     1. [Erros como valores](../../tree/main/dia_02#erros-como-valores)
     2. [Tratamento versus propagação](../../tree/main/dia_02#tratamento-versus-propagação)
     3. [Boas práticas](../../tree/main/dia_02#boas-práticas)
+    4. [Considerações finais sobre erros](../../tree/main/dia_02#considerações-finais-sobre-erros)
 10. [Interfaces](../../tree/main/dia_02#interfaces)
 
 
