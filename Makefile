@@ -60,4 +60,4 @@ clean:
 
 .PHONY: update-readme
 update-readme:
-	@python3 tools/update_readme.py
+	@go run tools/update_readme.go
