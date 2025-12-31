@@ -60,8 +60,11 @@
     6. [Armadilhas clássicas do `defer`](../../tree/main/dia_02#armadilhas-clássicas-do-defer)
     7. [Boas práticas no uso de `defer`](../../tree/main/dia_02#boas-práticas-no-uso-de-defer)
     8. [Considerações finais sobre `defer`](../../tree/main/dia_02#considerações-finais-sobre-defer)
-9. [Erros](../../tree/main/dia_02#erros)
+9. [Tratamento de Erros em Go](../../tree/main/dia_02#tratamento-de-erros-em-go)
 
+    1. [Erros como valores](../../tree/main/dia_02#erros-como-valores)
+    2. [Tratamento versus propagação](../../tree/main/dia_02#tratamento-versus-propagação)
+    3. [Boas práticas](../../tree/main/dia_02#boas-práticas)
 10. [Interfaces](../../tree/main/dia_02#interfaces)
 
 
