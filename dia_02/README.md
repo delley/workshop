@@ -403,16 +403,19 @@ Em Go, o `defer` não é apenas um atalho sintático; ele expressa uma intençã
 A instrução `defer` agenda a execução de uma chamada de função para ocorrer **após** o retorno da função atual. A avaliação dos argumentos ocorre **imediatamente**, no momento em que o `defer` é declarado, enquanto a execução da função é postergada.
 
 ```go
+// dia_02/exemplos/08-defer/ex1.go
+...
 func exemplo() {
-    defer fmt.Println("mundo")
-    fmt.Println("olá")
+	defer fmt.Println("mundo!")
+	fmt.Print("Olá ")
 }
+...
 ```
 
 A saída será:
 
 ```bash
-olá mundo
+Olá mundo!
 ```
 
 Mesmo que a função possua múltiplos `return`, panics ou fluxos condicionais complexos, as funções deferidas serão executadas de forma garantida.
@@ -424,14 +427,17 @@ As chamadas deferidas são associadas à **ativação da função na pilha de ch
 Isso implica que:
 
 * `defer` **não está ligado a blocos**, mas à função inteira;
-* não existe “defer de escopo local” em Go;
+* não existe **“defer de escopo local”** em Go;
 * o momento exato da execução ocorre após a avaliação do `return`, mas antes do controle voltar ao chamador.
 
 ```go
+// dia_02/exemplos/08-defer/ex2.go
+...
 func soma(a, b int) int {
-    defer fmt.Println("fim da função")
-    return a + b
+	defer fmt.Println("fim da função soma")
+	return a + b
 }
+...
 ```
 
 ### Ordem de execução: LIFO (Last In, First Out)
@@ -439,16 +445,22 @@ func soma(a, b int) int {
 Uma característica essencial do `defer` é que múltiplas chamadas deferidas são executadas em **ordem inversa** àquela em que foram declaradas, seguindo o modelo de uma pilha (LIFO).
 
 ```go
+// dia_02/exemplos/08-defer/ex3.go
+...
 func exemplo() {
     defer fmt.Println("1")
     defer fmt.Println("2")
-    defer fmt.Println("3") }
+    defer fmt.Println("3")
+}
+...
 ```
 
 Saída:
 
 ```bash
-3 2 1
+3
+2
+1
 ```
 
 Esse comportamento é intencional e extremamente útil para padrões como:
@@ -462,11 +474,17 @@ Esse comportamento é intencional e extremamente útil para padrões como:
 O uso mais comum de `defer` está associado à liberação de recursos externos, como arquivos, conexões e locks.
 
 ```go
+// dia_02/exemplos/08-defer/ex4.go
+...
 file, err := os.Open("dados.txt")
 if err != nil {
     return err
 }
-defer file.Close()
+defer func() {
+    file.Close()
+    fmt.Println("Arquivo fechado com sucesso!")
+}()
+...
 ```
 
 Esse padrão garante que:
@@ -487,15 +505,19 @@ O mesmo princípio se aplica a:
 Em Go, funções podem ter **valores de retorno nomeados**, e o `defer` pode interagir diretamente com eles.
 
 ```go
+// dia_02/exemplos/08-defer/ex5.go
+...
 func contador() (n int) {
     defer func() {
         n++
     }()
     return 10
 }
+...
 ```
 
 Nesse caso, o valor retornado será `11`, pois:
+
 1. `n` recebe o valor `10`;
 2. o `defer` é executado;
 3. a função retorna o valor final de `n`.
@@ -511,22 +533,28 @@ Apesar de sua simplicidade aparente, o `defer` possui algumas armadilhas conheci
 Uma das armadilhas mais comuns ocorre ao usar `defer` dentro de loops longos.
 
 ```go
+...
 for i := 0; i < 1000; i++ {
     f, _ := os.Open(fmt.Sprintf("file%d.txt", i))
     defer f.Close()
 }
+...
 ```
 
 Nesse exemplo, **todos os arquivos permanecem abertos até o final da função**, o que pode causar exaustão de recursos.
+
 A abordagem correta é limitar o escopo da função ou extrair a lógica para uma função auxiliar:
 
 ```go
+...
 for i := 0; i < 1000; i++ {
     func() {
-        f, _ := os.Open(fmt.Sprintf("file%d.txt", i))         defer f.Close()
+        f, _ := os.Open(fmt.Sprintf("file%d.txt", i))
+        defer f.Close()
         // uso do arquivo
     }()
 }
+...
 ```
 
 #### 2. Avaliação imediata dos argumentos
@@ -534,15 +562,20 @@ for i := 0; i < 1000; i++ {
 Os argumentos de uma função deferida são avaliados no momento da declaração, não no momento da execução.
 
 ```go
+// dia_02/exemplos/08-defer/ex6.go
+...
 for i := 0; i < 3; i++ {
     defer fmt.Println(i)
 }
+...
 ```
 
 Saída:
 
 ```bash
-2 1 0
+2
+1
+0
 ```
 
 Isso ocorre porque o valor de `i` é capturado a cada iteração, no momento do `defer`.
@@ -552,6 +585,7 @@ Esse comportamento é correto e previsível, mas frequentemente causa confusão 
 #### 3. Custo de performance do `defer`
 
 O `defer` possui um custo maior do que uma chamada direta de função. Embora esse custo tenha sido significativamente reduzido nas versões modernas do Go, ele **não é zero**.
+
 Em código crítico de altíssima performance (loops internos, hot paths), pode ser preferível uma liberação explícita:
 
 ```go
@@ -568,7 +602,8 @@ defer mu.Unlock()
 ```
 
 A regra prática é clara:
-* priorize **clareza e segurança**;  
+
+* priorize **clareza e segurança**;
 * otimize apenas quando houver evidência mensurável de impacto.
 
 #### 4. `defer` não substitui controle explícito de fluxo
@@ -596,52 +631,80 @@ O `defer` é um dos pilares do estilo idiomático de Go. Ele não apenas reduz a
 
 Dominar o `defer` é um passo essencial antes de avançar para concorrência, pois muitos padrões seguros com goroutines, canais e primitivas de sincronização dependem diretamente de seu uso correto.
 
-## Erros
+## Tratamento de Erros em Go
 
-**Erros** são um assunto muito complexo em Go, pois não existe um tratamento de exeção como em outras linguagens. A única forma de se tratar *erros* em Go é usando a condição *if* ou então podemos criar uma função para realizar o tratamento. veja os exemplos:
+O tratamento de erros em Go segue uma abordagem explícita e baseada em valores. Diferentemente de linguagens que utilizam mecanismos de exceção como `try/catch`, Go adota um modelo simples e previsível: funções que podem falhar retornam, além do resultado esperado, um valor do tipo `error`.
 
+Esse modelo não é uma limitação da linguagem, mas uma decisão de design. Em Go, erros fazem parte do fluxo normal de execução e devem ser tratados de forma clara e deliberada pelo código chamador.
+
+### Erros como valores
+
+Em Go, `error` é uma interface. Isso permite que erros sejam criados, retornados, comparados, propagados ou enriquecidos com contexto adicional, da mesma forma que qualquer outro valor.
+
+O padrão mais comum — e idiomático — para lidar com erros é a verificação explícita após a chamada de uma função:
 
 ```go
-package main
-
-func main() {
-    tot, err := exemploVariadicoWithErr(1,2)
-    if err != nil {
-        return
-    }
-    fmt.Println("Resultado é:", tot)
-
-    tot2, err := exemploVariadicoWithErr(2,3)
-    if err != nil {
-        return
-    }
-    fmt.Println("Resultado é:", tot2)
-
-    tot3, err := exemploVariadicoWithErr(3,4)
-    checkErr(err)
-    fmt.Println("Resultado é:", tot3)
-}
-
-func exemploVariadicoWithErr(numeros ...int) (total int, err error) {
-    total = 0
-
-    for _, n := numeros {
-        total += n
-    }
-    if total == 0 {
-        err = errors.New("O resultado não pode ser zero")
-        return
-    }
-	return 
-}
-
-func checkErr(err error) {
-    if err != nil {
-        return
-    }
+result, err := algumaFuncao()
+if err != nil {
+    // decidir como tratar o erro
+    return err
 }
 ```
-Como mostrado no exemplo acima, uma função pode retornar algum resultado e/ou erro.
+
+Essa verificação explícita torna o fluxo do programa mais fácil de entender, evita efeitos colaterais implícitos e deixa claro onde e como cada erro é tratado.
+
+**Exemplo prático**
+
+O exemplo a seguir ilustra uma função que realiza um cálculo simples e retorna um erro caso uma condição inválida seja encontrada:
+
+```go
+...
+func soma(numeros ...int) (int, error) {
+    total := 0
+    for _, n := range numeros {
+        total += n
+    }
+
+    if total == 0 {
+        return 0, errors.New("o resultado não pode ser zero")
+    }
+
+    return total, nil
+}
+...
+```
+
+Ao consumir essa função, o código chamador deve decidir como lidar com o erro retornado:
+
+```go
+func main() {
+    total, err := soma(1, 2)
+    if err != nil {
+        return
+    }
+    fmt.Println("Resultado:", total)
+}
+```
+
+### Tratamento versus propagação
+
+Nem todo erro deve ser tratado imediatamente. Uma regra prática em Go é:
+
+- **Trate o erro** quando você tem contexto suficiente para tomar uma decisão.
+- **Propague o erro** quando não é possível resolvê-lo naquele nível da aplicação.
+
+Propagar um erro geralmente significa retorná-lo ao chamador, preservando o fluxo explícito do programa.
+
+### Boas práticas
+
+- Nunca ignore erros silenciosamente.
+- Evite funções auxiliares que apenas verificam `err != nil` sem executar nenhuma ação concreta.
+- Sempre que possível, adicione contexto ao erro antes de propagá-lo.
+- Trate erros no nível mais apropriado da aplicação.
+
+Considerações finais sobre erros
+
+Em Go, erros são parte do contrato das funções e devem ser tratados com a mesma atenção que qualquer outro valor retornado. Essa abordagem explícita favorece código mais legível, previsível e fácil de manter, além de incentivar decisões conscientes sobre falhas e comportamentos excepcionais ao longo do fluxo da aplicação.
 
 ## Interfaces
 

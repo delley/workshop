@@ -1,7 +1,7 @@
 ---
 title: "Workshop Go: do Zero à API"
 author: [Diego Santos, Francisco Oliveira]
-date: "30-12-2025"
+date: "31-12-2025"
 subject: "Workshop Go"
 keywords: [Programação, Go, Golang, API]
 lang: "pt-br"
