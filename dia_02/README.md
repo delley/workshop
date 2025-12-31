@@ -708,53 +708,56 @@ Em Go, erros são parte do contrato das funções e devem ser tratados com a mes
 
 ## Interfaces
 
-Uma `interface` é uma coleção de metódos que um tipo concreto deve implementar para ser considerado uma instância dessa interface. Portanto, uma `interface` define, mas, não declara o comportamento do tipo.
+Em Go, uma `interface` define um **conjunto de métodos** que representa um comportamento esperado. Qualquer tipo que implemente todos os métodos declarados por uma interface **automaticamente satisfaz esse contrato**, sem a necessidade de declarações explícitas ou palavras-chave especiais.
 
-Para exemplificar vamos usar os mesmos exemplos que usamos para criar métodos.
+Esse modelo é conhecido como **implementação implícita de interfaces** e é um dos pilares do design idiomático em Go. Ele reduz o acoplamento entre componentes, favorece a composição e permite que tipos sejam reutilizados em diferentes contextos sem modificações.
+
+Uma interface não descreve *como* um comportamento é implementado, apenas *qual* comportamento é esperado. Os tipos concretos permanecem livres para definir sua própria lógica, desde que respeitem o contrato estabelecido pela interface.
+
+A seguir, veremos um exemplo simples utilizando figuras geométricas, no qual diferentes tipos compartilham um mesmo comportamento: o cálculo de área.
 
 ```go
+// dia_02/exemplos/09-interfaces/ex1.go
 package main
 
 import "fmt"
 
-// Geo interface base para figuras geométricas
+// Geo define o comportamento básico de figuras geométricas.
 type Geo interface {
 	Area() float64
 }
 
-// Retangulo representa um retângulo
+// Retangulo representa um retângulo.
 type Retangulo struct {
 	Largura float64
 	Altura  float64
 }
 
-// Area calcula a are de um retângulo
+// Area calcula a área de um retângulo.
 func (r *Retangulo) Area() float64 {
-	res := r.Largura * r.Altura
-	return res
+	return r.Largura * r.Altura
 }
 
-// Triangulo representa um triângulo
+// Triangulo representa um triângulo.
 type Triangulo struct {
 	Base   float64
 	Altura float64
 }
 
-// Area calcula a are de um triângulo
+// Area calcula a área de um triângulo.
 func (t *Triangulo) Area() float64 {
-	res := (t.Base * t.Altura) / 2
-	return res
+	return (t.Base * t.Altura) / 2
 }
 
+// imprimeArea recebe qualquer tipo que satisfaça a interface Geo.
 func imprimeArea(g Geo) {
-	fmt.Println(g)
-	fmt.Println(fmt.Sprintf("Área      : %0.2f", g.Area()))
+	fmt.Printf("Área: %.2f\n", g.Area())
 }
 
 func main() {
 	r := Retangulo{
-		Altura:  10,
 		Largura: 5,
+		Altura:  10,
 	}
 
 	t := Triangulo{
@@ -766,3 +769,9 @@ func main() {
 	imprimeArea(&t)
 }
 ```
+
+No exemplo acima, tanto `Retangulo` quanto `Triangulo` implementam o método `Area()`. Por esse motivo, ambos satisfazem a interface `Geo` de forma automática e podem ser utilizados pela função `imprimeArea`, que depende apenas do contrato definido pela interface, e não de tipos concretos.
+
+Observe que os métodos `Area()` utilizam **receptores por ponteiro**. Isso significa que apenas `*Retangulo` e `*Triangulo` pertencem ao _method set_ que satisfaz a interface `Geo`. Esse detalhe é importante para compreender como Go determina se um tipo implementa ou não uma interface.
+
+Em resumo, interfaces em Go promovem designs mais flexíveis e desacoplados, permitindo que o foco esteja no comportamento — e não na hierarquia de tipos.

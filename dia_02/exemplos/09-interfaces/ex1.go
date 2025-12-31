@@ -2,44 +2,42 @@ package main
 
 import "fmt"
 
-// Geo interface base para figuras geométricas
+// Geo define o comportamento básico de figuras geométricas.
 type Geo interface {
 	Area() float64
 }
 
-// Retangulo representa um retângulo
+// Retangulo representa um retângulo.
 type Retangulo struct {
 	Largura float64
 	Altura  float64
 }
 
-// Area calcula a are de um retângulo
+// Area calcula a área de um retângulo.
 func (r *Retangulo) Area() float64 {
-	res := r.Largura * r.Altura
-	return res
+	return r.Largura * r.Altura
 }
 
-// Triangulo representa um triângulo
+// Triangulo representa um triângulo.
 type Triangulo struct {
 	Base   float64
 	Altura float64
 }
 
-// Area calcula a are de um triângulo
+// Area calcula a área de um triângulo.
 func (t *Triangulo) Area() float64 {
-	res := (t.Base * t.Altura) / 2
-	return res
+	return (t.Base * t.Altura) / 2
 }
 
+// imprimeArea recebe qualquer tipo que satisfaça a interface Geo.
 func imprimeArea(g Geo) {
-	fmt.Println(g)
-	fmt.Println(fmt.Sprintf("Área      : %0.2f", g.Area()))
+	fmt.Printf("Área: %.2f\n", g.Area())
 }
 
 func main() {
 	r := Retangulo{
-		Altura:  10,
 		Largura: 5,
+		Altura:  10,
 	}
 
 	t := Triangulo{
