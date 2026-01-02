@@ -22,6 +22,7 @@ PDF_BUILDER_FLAGS = \
 	--template=eisvogel.tex \
 	--filter pandoc-include \
 	--filter pandoc-latex-environment \
+	--lua-filter filters/br-to-newline-table.lua \
 	--listings \
 	--top-level-division=chapter
 
@@ -61,3 +62,32 @@ clean:
 .PHONY: update-readme
 update-readme:
 	@go run tools/update_readme.go
+
+# ==========================
+# Debug LaTeX (.tex)
+# ==========================
+OUTPUT_TEX := $(EBOOK_DIR)/$(BOOK_NAME).tex
+
+.PHONY: tex
+tex:
+	@echo "Gerando LaTeX intermediário (.tex) para debug..."
+
+	@sed -Ei "s/[0-3][0-9]-[01][0-9]-[12][0-9]{3}/$(shell date +%d-%m-%Y)/" $(SOURCE_FILE)
+
+	@cp dia_01/README.md $(EBOOK_DIR)/dia_01.md
+	@cp dia_02/README.md $(EBOOK_DIR)/dia_02.md
+	@cp dia_03/README.md $(EBOOK_DIR)/dia_03.md
+	@cp -r dia_03/img $(EBOOK_DIR)/img
+
+	@$(PDF_BUILDER) $(PDF_BUILDER_FLAGS) \
+		--to=latex \
+		--standalone \
+		workshop.md -o $(BOOK_NAME).tex
+
+	@rm -f \
+		$(EBOOK_DIR)/dia_01.md \
+		$(EBOOK_DIR)/dia_02.md \
+		$(EBOOK_DIR)/dia_03.md
+	@rm -rf $(EBOOK_DIR)/img
+
+	@echo "Concluído: $(OUTPUT_TEX)"

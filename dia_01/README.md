@@ -312,16 +312,17 @@ A tabela a seguir mostra o tipo que é inferido dado um valor literal:
 
 | Valor Literal | Tipo inferido |
 |---------------|---------------|
-| Texto com aspas duplas ou simples:<br>`"Lua Yavin IV"`<br><code>\`Sua superfície tem<br>seis continentes ocupando<br>67% do total.\`</code> | string |
+| Texto com aspas duplas ou simples:<code class="language-text"><br>"Lua Yavin IV"<br>\`Sua superfície tem<br>seis continentes ocupando<br>67% do total.\`</code> | string |
 | Inteiros:<br>`-51`<br>`0`<br>`1234` | int |
 | Decimal:<br>`-0.12`<br>`1.0`<br>`1.3e5`<br>`5e-11` | float64 |
 | Números complexos:<br>`-1.0i`<br>`2i`<br>`(0+2i)` | complex128 |
 | Booleanos:<br>`true`<br>`false` | bool |
-| Arrays:<br>`[2]int{-3, 51}`| O tipo do `array` definido pelo valor literal. Neste caso `[2]int` |
-| Map:<br>`map[string]int{`<br>`"Tatooine": 10465,`<br>`"Alderaan": 12500,`<br>`"Yavin IV": 10200,`<br>`}` | O tipo do `map` definido pelo valor literal. Neste caso `map[string]int` |
+| Arrays:<br>`[2]int{-3, 51}` | O tipo do `array` definido pelo valor literal. Neste caso `[2]int` |
+| Map:<code class="language-go"><br>map\[string\]int{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Tatooine": 10465,<br>&nbsp;&nbsp;&nbsp;&nbsp;"Alderaan": 12500,<br>&nbsp;&nbsp;&nbsp;&nbsp;"Yavin IV": 10200,<br>}</code> | O tipo do `map` definido pelo valor literal. Neste caso `map[string]int` |
 | Slice:<br>`[]int{-3, 51, 134, 0}` | O tipo do `slice` definido pelo valor literal: `[]int` |
-| Struct:<br>`struct{`<br>`nome string`<br>`diametro int`<br>`}{`<br>`"Tatooine", 10465,`<br>`}` | O tipo do `struct` definido conforme o valor literal. Neste caso: `struct{nome string; diametro int}` |
-| Function:<br>`var sqr = func (v int) int {`<br>`    return v * v`<br>`}` | O tipo de `function` definido na definição literal da função. Neste caso, a variável `sqr` terá o tipo: `func (v int) int` |
+| Struct:<code class="language-go"><br>struct{<br>&nbsp;&nbsp;&nbsp;&nbsp;nome string<br>&nbsp;&nbsp;&nbsp;&nbsp;diametro int<br>}{<br>&nbsp;&nbsp;&nbsp;&nbsp;"Tatooine", 10465,<br>}</code> | O tipo do `struct` definido conforme o valor literal. Neste caso: `struct{nome string; diametro int}` |
+| Function:<code class="language-go"><br>var sqr = func (v int) int {<br>&nbsp;&nbsp;&nbsp;&nbsp;return v * v<br>}</code> | O tipo de `function` definido na definição literal da função. Neste caso, a variável `sqr` terá o tipo: `func (v int) int` |
+
 
 #### Declaração curta de variável
 

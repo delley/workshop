@@ -1,0 +1,29 @@
+\ProvidesPackage{listings-plain}[2026/01/02 Plain listings style]
+
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+
+\lstdefinestyle{plaincode}{
+  keepspaces=true,
+  showstringspaces=false,
+  basicstyle=\ttfamily\small\color{black},
+  keywordstyle=\color{black},
+  commentstyle=\color{black},
+  stringstyle=\color{black},
+  identifierstyle=\color{black},
+  numberstyle=\color{black},
+  emphstyle=\color{black},
+  breaklines=false,
+}
+
+\lstset{
+  style=plaincode,
+  columns=fullflexible,
+  keepspaces=true,
+  upquote=true,
+  tabsize=4,
+}
+
+\makeatletter
+\def\lst@visiblespace{\textvisiblespace}
+\makeatother
