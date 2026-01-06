@@ -8,12 +8,11 @@ Estruturas de controle são ultilizadas para alterar a forma como o nosso códig
 
 O `if` é uma instrução que avalia uma condição booleana. Para entender melhor como ele funciona, vamos analisar o seguinte problema:
 
-> Em uma soma de dois números, onde `a` = 2 e `b` = 4, avalie o valor de `c`. Se `c` for igual a 6, imprima na tela *"Sua soma está correta!"*, caso contrário, imprima *"Sua soma está errada!"*.
+- Em uma soma de dois números, onde `a = 2` e `b = 4`, avalie o valor de `c`. Se `c` for igual a 6, imprima na tela *"Sua soma está correta!"*, caso contrário, imprima *"Sua soma está errada!"*.
 
 ```go
-package main 
-
-func main() {
+// dia_02/exemplos/01-control-flow/ex1.go
+...
     var a, b = 2, 4
     c := (a + b)
     if c == 6 {
@@ -22,29 +21,29 @@ func main() {
     }
     //uma forma d fazer se não
     fmt.Println("Sua soma está errada.")
-}
+...
 ```
 
-#### Outro Exemplo:
+Também é possível encadear multiplos `if`s:
 
 ```go
-package main 
+// dia_02/exemplos/01-control-flow/ex2.go
+...
+	if 11%2 == 0 {
+		fmt.Println("É par.")
+	} else {
+		fmt.Println("É impar.")
+	}
 
-func main() {
-    if 2%2 == 0 {
-        fmt.Println("É par.")
-    } else {
-        fmt.Println("É impar.")
-    }
-
-    if num := 2 num < 0 {
-        fmt.Println(num, "É negativo.")
-    } else if num < 10 {
-        fmt.Println(num, "Tem um dígito.")
-    } else {
-        fmt.Println(num, "Tem vários dígitos.")
-    }
-}
+	if num := 11; num < 0 {
+		fmt.Println(num, "É negativo.")
+	} else if num < 10 {
+		fmt.Println(num, "Tem um dígito.")
+	} else if num > 10 {
+		fmt.Println(num, "É maior que 10.")
+	} else {
+		fmt.Println(num, "Tem vários dígitos.")
+	}
 ```
 
 ### Switch
