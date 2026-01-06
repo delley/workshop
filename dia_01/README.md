@@ -758,19 +758,19 @@ Também é possível criar um um *slice* a partir de um array:
 ```go
 // dia_01/exemplos/08-slice/slice02.go
 ...
-1	// Naves do jogo "Star Wars: Battlefront"
-2	naves := [...]string{
-3		1: "X-Wing",
-4		2: "A-Wing",
-5		3: "Millenium Falcon",
-6		4: "TIE Fighter",
-7		5: "TIE Interceptor",
-8		6: "Imperial Shuttle",
-9		7: "Slave I",
-10	}
-11	// cria um slice de naves[1] até naves[3]
-12	rebeldes := naves[1:4]
-13	fmt.Println(rebeldes)
+// Naves do jogo "Star Wars: Battlefront"
+naves := [...]string{
+	1: "X-Wing",
+	2: "A-Wing",
+	3: "Millenium Falcon",
+	4: "TIE Fighter",
+	5: "TIE Interceptor",
+	6: "Imperial Shuttle",
+	7: "Slave I",
+}
+// cria um slice de naves[1] até naves[3]
+rebeldes := naves[1:4]
+fmt.Println(rebeldes)
 ...
 ```
 
